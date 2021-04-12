@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="gr__getpapercss_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI based Resume screening">
+<meta name="author" content="EVRY">
+
+
+<link rel="shortcut icon" href="" type="image/x-icon">
+ <title>Resume Ranking System</title>
+  
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" >
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<style>
+
+body {
+  background-image: url("./static/geometry.png");
+	background-position: top;
+  /*background-image: url("./static/geometry.png") ;
+   height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
+}
+
+html {
+  height: 100%;
+  font: 20%/1 "Lucida Sans Unicode","Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+}
+
+.main-div {
+  background: transparent none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 1px auto 30px;
+  max-width: 30%;
+  padding: 20px 70px 20px 20px;
+}
+.container {
+    max-width: 250px !important;
+  }
+
+
+.menu-item,
+.menu-open-button {
+   background: #87befd;
+   color: #596778;
+   border-radius: 100%;
+   width: 80px;
+   height: 80px;
+   margin-left: -40px;
+   position: fixed;
+   text-align: center;
+   line-height: 80px;
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   -webkit-transition: -webkit-transform ease-out 200ms;
+   transition: -webkit-transform ease-out 200ms;
+   transition: transform ease-out 200ms;
+   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+   font-style: italic;
+   font-weight: bold;
+   font-size: 5.0em; 
+}
+
+.menu-open {
+   display: none;
+}
+
+.lines {
+   width: 25px;
+   height: 3px;
+   background: #596778;
+   display: block;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-left: -12.5px;
+   margin-top: -1.5px;
+   -webkit-transition: -webkit-transform 200ms;
+   transition: -webkit-transform 200ms;
+   transition: transform 200ms;
+   transition: transform 200ms, -webkit-transform 200ms;
+
+}
+
+.line-1 {
+   -webkit-transform: translate3d(0, -8px, 0);
+   transform: translate3d(0, -8px, 0);
+}
+
+.line-2 {
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+}
+
+.line-3 {
+   -webkit-transform: translate3d(0, 8px, 0);
+   transform: translate3d(0, 8px, 0);
+}
+
+.line-4 {
+   -webkit-transform: translate3d(0, 0, 0) rotate(90deg);
+   transform: translate3d(0, 0, 0) rotate(90deg);
+}
+
+
+.menu-open:checked + .menu-open-button .line-1 {
+   -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
+   transform: translate3d(0, 0, 0) rotate(45deg);
+}
+
+.menu-open:checked + .menu-open-button .line-2 {
+   -webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
+   transform: translate3d(0, 0, 0) scale(0.1, 1);
+}
+
+.menu-open:checked + .menu-open-button .line-3 {
+   -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+   transform: translate3d(0, 0, 0) rotate(-45deg);
+}
+
+
+
+.menu {
+   position: absolute;
+   top: 500px;
+   left: 70px;
+
+}
+
+
+/* .menu-item {
+   transition: all 0.1s ease 0s;
+} */
+
+.menu-item:hover {
+   background: #EEEEEE;
+   color: #3290B1;
+}
+
+.menu-item:nth-child(3) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+.menu-item:nth-child(4) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+
+.menu-open-button {
+   z-index: 2;
+   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -webkit-transition-duration: 400ms;
+   transition-duration: 400ms;
+   -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+   transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+   cursor: pointer;
+
+}
+
+.menu-open-button:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked + .menu-open-button {
+   -webkit-transition-timing-function: linear;
+   transition-timing-function: linear;
+   -webkit-transition-duration: 200ms;
+   transition-duration: 200ms;
+   -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+   transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+}
+
+.menu-open:checked ~ .menu-item {
+   -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+   transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(3) {
+   transition-duration: 180ms;
+   -webkit-transition-duration: 180ms;
+   -webkit-transform: translate3d(0.08361px, -104.99997px, 0);
+   transform: translate3d(0.08361px, -104.99997px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(4) {
+   transition-duration: 280ms;
+   -webkit-transition-duration: 280ms;
+   -webkit-transform: translate3d(90.9466px, -52.47586px, 0);
+   transform: translate3d(90.9466px, -52.47586px, 0);
+}
+
+
+.orange {
+   background-color: #FC913A;
+   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+
+}
+
+.orange:hover {
+   color: #FC913A;
+   text-shadow: none;
+}
+
+.lightblue {
+   background-color: #62C2E4;
+   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.lightblue:hover {
+   color: #62C2E4;
+   text-shadow: none;
+}
+
+.credit {
+   margin: 24px 20px 120px 0;
+   text-align: right;
+   color: #EEEEEE;
+}
+
+.credit a {
+   padding: 8px 0;
+   color: #C49CDE;
+   text-decoration: none;
+   transition: all 0.3s ease 0s;
+}
+
+.credit a:hover {
+   text-decoration: underline;
+}
+
+.rank {
+   position: absolute;
+   top: 50px;
+   right: 40px;
+}
+
+.btn1 { 
+        cursor: pointer; 
+        border: 1px solid #3498db; 
+        background-color: transparent; 
+        height: 20px; 
+        width: 70px; 
+        color: #000;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 3.0em; 
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6); 
+    } 
+
+.btn1:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+
+.btn2 {
+   background: #87befd;
+   border-radius: 100%;
+   width: 80px;
+   height: 80px;
+   margin-left: -40px;
+   position: fixed;
+   text-align: center;
+   line-height: 80px;
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   -webkit-transition: -webkit-transform ease-out 200ms;
+   transition: -webkit-transform ease-out 200ms;
+   transition: transform ease-out 200ms;
+   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+   font-size: 12px;
+   color:  #596778
+   font-style:italic;
+   font-weight: bold;
+
+}
+
+.btn2:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+
+
+
+#wrapper {
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 10em;
+  padding: 50px 0;
+}
+
+span { 
+  text-shadow: -0.06em 0 red,  0.06em 0 cyan; /* This creates the 3D effect, pretty easy, eh? */
+  letter-spacing: 0.08em; /* make sure the letters don't overlap */
+}
+
+p {
+  margin: 0;
+}
+
+/* ---------------- Stars ---------------- */
+
+#stars span {
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 2s cubic-bezier(0, 1, 0, 1);
+}
+#stars span:hover {
+  cursor: crosshair;
+  transform: scale(1.3); /* This adds a hover effect */
+  transition: transform .2s cubic-bezier(0, 0.75, 0, 1);
+}
+#stars span:active {
+  text-shadow: none; /* Click to disable the 3D effect */
+}
+
+/* Below the stars animation */
+#stars span:nth-child(1), #stars span:nth-child(5) { font-size: 0.3em; animation-delay: 0.2s; }
+#stars span:nth-child(2), #stars span:nth-child(4) { font-size: 0.5em; animation-delay: 0.1s; }
+#stars span:nth-child(3) { font-size: 0.8em; animation-delay: 0s; }
+
+#stars span { animation: stars-animation 3s 50 ease-in-out; }
+
+@-webkit-keyframes stars-animation {
+  0% { transform: scale(1); }
+  90% { transform: scale(1); }
+  95% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+#stars:hover span {
+  animation: none; /* Disables the animation on hover */
+}
+
+
+/* ---------------- Title ---------------- */
+
+#title {
+  font-family: Helvetica, Geneva, sans-serif; /* Any font would work, but SansSerif looks better */
+}
+#title:focus {
+  outline: none;
+}
+#title span {
+  vertical-align: middle;
+  line-height: 1.5em;
+  transition: font-size 2s cubic-bezier(0, 1, 0, 1);
+}
+
+#title span:active {
+  font-size: 1em;
+  text-shadow: none; /* Click to disable the 3D effect */
+}
+#title span::selection {
+  background-color: red; /* This hides the selection */
+}
+
+
+
+</style>
+
+</head>
+
+<body data-gr-c-s-loaded="true">
+
+<div id="wrapper">
+  
+  <p id="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></p>
+  <p id="title" contenteditable="true" spellcheck="false"><span>Resume</span><span>Ranking</span><span>System</span></p>
+  
+</div>
+
+
+   <div class="main-div">
+
+    <div id="formdiv">
+      <br>
+      <div class="container">
+        {% if error %}<p style="font-size: 5.0em"><strong>{{ error }} </strong></p> {% endif %}
+
+        <form action = "/results" method = "POST" style="text-align:center"> 
+          <div class="form-group">
+          <table>
+          {% for r in name :%}
+           <tbody>
+        
+            <tr style="text-align: left;">
+            <td style="width: 70px; font-size: 15px"><i><b><a href="{{url_for('custom_static', filename=r)}}">{{r}}</a></b></i><br></td>
+            <td><button name="RemoveResume" class="btn1" type="remove" value = {{url_for('custom_static',filename=r)}}>Remove</button>
+            <br>
+            </td>
+            </tr>
+           </tbody>
+
+           {% endfor %}
+         </table>
+                      
+         <nav class="menu">
+            <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+              <label class="menu-open-button" for="menu-open">
+              <span class="lines line-4"></span>
+              <span class="lines line-2"></span>
+            </label>
+            <button class="menu-item lightblue" type = "submit" name = "uploadResume" value = "uploadResume">Resume</button>
+            <button class= "menu-item orange" type = "submit" name = "Upload-JD" value = "Upload-JD">JD
+            </button>
+
+          </nav>
+
+             <button class="rank btn2" type = "submit" name = "Calculate_Rank" value = "Calculate_Rank">RANKING</button>
+            
+       </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

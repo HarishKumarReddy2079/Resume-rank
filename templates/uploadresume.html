@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Resume Ranking System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" >
+<script src="{{ url_for('static', filename='js/custome.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custome1.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<script>
+      $(document).on("click", ".browse", function() {
+  var file = $(this)
+    .parent()
+    .parent()
+    .parent()
+    .find(".file");
+  file.trigger("click");
+});
+$(document).on("change", ".file", function() {
+  $(this)
+    .parent()
+    .find(".form-control")
+    .val(
+      $(this)
+        .val()
+        .replace(/C:\\fakepath\\/i, "")
+    );
+});
+
+function moveBack(){
+window.location.href="/";
+}
+      //# sourceURL=pen.js
+    </script>
+
+<style>
+body {
+    background-image: url("./static/geometry.png");
+	background-position: top;
+}
+.container {
+    max-width: 550px !important;
+	}
+</style>
+</head>
+
+<body translate="no">
+    
+	<!-- <img height="50px" src="{{ url_for('static', filename='Evry_logo.png') }}"/> -->
+	
+	<div class="container">
+    {% if error %}<p class=error><strong>Error: {{ error }} </strong></p> {% endif %}
+
+
+	<form role="form" method='POST' action="/upload" enctype="multipart/form-data">
+		<div class="form-group">
+		<!--<h4>Resume Ranking system</h4>-->
+			<input required type="file" multiple class="file" name="customerfile">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i
+						class="fas fa-paperclip"></i></span>
+				</div>
+				<input required type="text" class="form-control" disabled=""
+					placeholder="Upload CVs" aria-label="Upload File"
+					aria-describedby="basic-addon1" >
+				<div class="input-group-append">
+					<button class="browse input-group-text btn btn-primary"
+						id="basic-addon2" type="button">
+						<i class="fas fa-search"></i> Browse
+					</button>
+				</div>
+							
+			</div>
+		</div>
+		<div class="form-group" style="float:right;">
+				<button type="submit" class="btn btn-primary">Upload CVs</button>
+				<!--<button type="reset" class="btn btn-primary">Reset</button>-->
+				<button type="button" onclick="moveBack();" class="btn btn-primary">Back</button>
+
+
+		</div>
+</form>
+<!--
+<form action="/RemoveResume" method = "POST">
+
+	<table>
+			 
+			{% for r in name :%}
+				<tbody>
+				
+			  		<tr style="text-align: left;">
+						<td style="width: 70px;"><a href="{{url_for('custom_static', filename=r)}}">{{r}}</a><br></td>
+						<td><button name="RemoveResume" class="btn btn-primary" type="remove" value = {{url_for('custom_static',filename=r)}}>Remove</button>
+
+						</td>
+
+				
+			  		</tr>
+				</tbody>
+			{% endfor %}
+		</table>				
+</form>
+-->
+</body>
+</html>

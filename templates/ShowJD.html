@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI based Resume screening">
+<meta name="author" content="Evry">
+
+
+<link rel="shortcut icon" href="" type="image/x-icon">
+ <title>Resume Ranking System</title>
+  
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" >
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<style>
+body {
+    background-image: url("./static/geometry.png");
+	background-position: top;
+}
+.main-div {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 50px auto 30px;
+  max-width: 100%;
+  padding: 50px 70px 70px 71px;
+}
+table,th,td {
+  border: 1px solid black;
+}
+th{
+text-align: center;}
+
+.btn1 { 
+        cursor: pointer; 
+        border: 1px solid #3498db; 
+        background-color: transparent; 
+        height: 20px; 
+        width: 70px; 
+        color: #000;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 0.7em; 
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6); 
+    } 
+
+.btn1:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.btn2 {
+   background: #87befd;
+   border-radius: 100%;
+   width: 80px;
+   height: 80px;
+   margin-left: -40px;
+   position: fixed;
+   text-align: center;
+   line-height: 80px;
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   -webkit-transition: -webkit-transform ease-out 200ms;
+   transition: -webkit-transform ease-out 200ms;
+   transition: transform ease-out 200ms;
+   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+   font-size: 12px;
+   color:  #596778
+   font-style:italic;
+   font-weight: bold;
+
+}
+
+.btn2:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+.pri {
+   position: absolute;
+   bottom: 100px;
+   right: 400px;
+}
+
+.setpri {
+   position: absolute;
+   bottom: 100px;
+   right: 800px;
+}
+
+
+</style>
+</head>
+
+<body data-gr-c-s-loaded="true">
+
+   <form action="/SetPriority" method = "POST">
+        <button name="SetPriority" class="btn2 setpri" type="select">SetPriority</button>
+  </form>
+
+  <form action="/SelectJD" method = "POST">
+      <button name="SelectJD" class="btn2 pri" type="select">Ranking</button>
+  </form>
+
+
+        <div class="main-div" padding= "30px">
+
+        <div class="form-group">
+    			<h3><b><i>Job Description</i></b></h3>
+    			{{ jd.to_html(classes="table table-striped") | safe}}
+    	</div>
+    			<br>
+          <form action="/ViewJD" method="GET" style="text-align:center">
+        
+            <button class="btn1" type="submit">Back</button>
+
+          </form>
+                   
+      </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+</body></html>

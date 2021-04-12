@@ -1,0 +1,57 @@
+<html>
+  <head>
+  	 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" >
+<script src="{{ url_for('static', filename='js/custome.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custome1.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+body {
+    background-image: url("./static/geometry.png");
+  background-position: top;
+}
+.main-div {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 50px auto 30px;
+  max-width: 38%;
+  padding: 50px 70px 70px 71px;
+}
+
+.container {
+    max-width: 550px !important;
+	}
+</style>
+
+  </head>
+
+  <script>
+function moveBack(){
+window.location.href="/";
+}
+</script>
+  <body>
+
+	<div class="container">
+	<div class="form-group">
+
+    <h3>Show your Priority</h3>
+      
+
+  {% for r in option :%}
+           <p>{{r}}</p>
+         
+      {% endfor %}
+
+<form action="/" method = "POST">
+
+
+				<button type="button" onclick="moveBack();" class="btn btn-primary">Back</button>
+</form>
+</div>
+</div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI based Resume screening">
+<meta name="author" content="Evry">
+
+
+<link rel="shortcut icon" href="" type="image/x-icon">
+ <title>Resume Ranking System</title>
+  
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" >
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+<style>
+body {
+    background-image: url("./static/geometry.png");
+  background-position: top;
+}
+.main-div {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 50px auto 30px;
+  max-width: 40%;
+  padding: 50px 70px 70px 71px;
+}
+
+.container {
+    max-width: 250px !important;
+  }
+table,th,td {
+  border: 1px solid black;
+}
+th{
+text-align: center;}
+
+.btn1 { 
+        cursor: pointer; 
+        border: 1px solid #3498db; 
+        background-color: transparent; 
+        height: 20px; 
+        width: 70px; 
+        color: #000;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 0.7em; 
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6); 
+    } 
+
+.btn1:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+
+</style>
+</head>
+
+<body data-gr-c-s-loaded="true">
+      
+    <div class="main-div">
+      <div class="container">
+
+          <table >
+           {% for r in results :%}
+      
+            <tbody>
+            <tr style="text-align: center;">
+
+            <td style="width: 70px; font-size: 20px"><i><b><a href="{{url_for('custom_static', filename=r)}}">{{r}}</a></b></i><br></td>   
+            </tr>
+             </tbody>
+              {% endfor %}
+
+    </table>
+<br>
+          <form action="/" method="GET" style="text-align:center">
+        
+            <button class="btn1" type="submit">Back</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

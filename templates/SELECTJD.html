@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Resume Ranking System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" >
+<script src="{{ url_for('static', filename='js/custome.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custome1.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<script>
+      $(document).on("click", ".browse", function() {
+  var file = $(this)
+    .parent()
+    .parent()
+    .parent()
+    .find(".file");
+  file.trigger("click");
+});
+$(document).on("change", ".file", function() {
+  $(this)
+    .parent()
+    .find(".form-control")
+    .val(
+      $(this)
+        .val()
+        .replace(/C:\\fakepath\\/i, "")
+    );
+});
+
+function moveBack(){
+window.location.href="/";
+}
+ </script>
+
+<style>
+
+
+body {
+    background-image: url("./static/geometry.png");
+	background-position: top;
+}
+.container {
+    max-width: 500px !important;
+	}
+
+.btn1 { 
+        cursor: pointer; 
+        border: 1px solid #3498db; 
+        background-color: transparent; 
+        height: 20px; 
+        width: 70px; 
+        color: #000;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 0.7em; 
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6); 
+        margin-left :10px
+    } 
+
+.btn1:hover {
+   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+</style>
+</head>
+
+<body translate="no">
+
+    <div class="container">
+    <div class="main-div">
+    <div class="background-color">
+    {% if error %}<h2 class=error><strong><b><i><center>{{ error }}</center> </i></b></strong></h2> {% endif %}
+
+	<table>
+
+			{% for r in name :%}
+				<tbody>
+				
+			  		<tr style="text-align: left;">
+						<td style="width: 70px; font-size: 20px"><i><b>{{r}}</a></b></i><br></td>
+						<form action="/RemoveJD" method = "POST">	
+							<td><button name="RemoveJD" class="btn1" type="remove" value = {{url_for('custom_static1',filename=r)}}>Remove</button></td>
+						</form>
+						<!--
+	                    <form action="/SelectJD" method = "POST">
+
+							<td><button name="SelectJD" class="btn btn-primary" type="select" value = {{url_for('custom_static1',filename=r)}}>Select</button></td>
+	                    </form>-->
+	                    
+	                    <form action="/ViewJD" method = "POST">
+
+	                    <td><button name="ViewJD" class="btn1" type="select" value = {{url_for('custom_static1',filename=r)}}>View</button></td>
+	                    </form>
+	                   				
+			  		</tr>
+				</tbody>
+			{% endfor %}
+		</table>	
+    <br>
+    <br>
+      <form action="/" method="GET" style="text-align:center">
+        
+            <button class="btn1" type="submit">Back</button>
+
+          </form>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
