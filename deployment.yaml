@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: resume-rank-gke
-        image: resume-rank-gke:latest
+        image: gcr.io/resume-rank-system/resume-rank-gke:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
