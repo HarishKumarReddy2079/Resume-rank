@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: resume-rank-gke-service
+spec:
+  selector:
+    app: resume-rank-gke
+  ports:
+  - protocol: "TCP"
+    port: 6000
+    targetPort: 5000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resume-rank-gke
+spec:
+  selector:
+    matchLabels:
+      app: resume-rank-gke
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: resume-rank-gke
+    spec:
+      containers:
+      - name: resume-rank-gke
+        image: resume-rank-gke:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
