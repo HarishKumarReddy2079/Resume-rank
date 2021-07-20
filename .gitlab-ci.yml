@@ -3,6 +3,7 @@ buildjob:
   tags:
     - resume-rank-system
   script:
+    - docker login --username=bhavesh51 --password=Sadhu@#@#8485
     - docker build -t bhavesh51/resume-rank-system:latest .
     - docker image push bhavesh51/resume-rank-system:latest
     - aws ecs update-service -cluster resume-rank-system -service resume-rank-system-service --force-new-deployment
