@@ -55,6 +55,11 @@ def logout():
     return redirect(url_for('home'))
 """
 
+
+@app.route('/demo')
+def demo():
+    return "hello"
+
 @app.route('/')
 def home():
     error = None

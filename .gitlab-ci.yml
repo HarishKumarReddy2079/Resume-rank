@@ -1,7 +1,3 @@
-stages:
-  - build
-  - test
-
 buildjob:
   stage: build
   tags:
