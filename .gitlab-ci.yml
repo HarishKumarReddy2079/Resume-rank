@@ -3,7 +3,8 @@ buildjob:
   tags:
     - resume-rank-system
   script:
-    - docker build -t resume-rank-system .
-    - docker tag resume-rank-system bhavesh51/resume-rank-system:latest
-    - docker image push bhavesh51/resume-rank-system:latest
-    - aws ecs update-service --cluster resume-rank-system -service resume-rank-system-service --force-new-deployment
+    # - docker build -t resume-rank-system .
+    # - docker tag resume-rank-system bhavesh51/resume-rank-system:latest
+    # - docker image push bhavesh51/resume-rank-system:latest
+    # - aws ecs update-service --cluster resume-rank-system -service resume-rank-system-service --force-new-deployment
+    - echo "hello"
