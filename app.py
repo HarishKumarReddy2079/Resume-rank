@@ -58,7 +58,7 @@ def logout():
 
 @app.route('/demo')
 def demo():
-    return "hello world"
+    return "hello world11"
 
 @app.route('/')
 def home():
