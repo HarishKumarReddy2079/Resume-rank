@@ -10,7 +10,7 @@ buildjob:
     - docker tag resume-rank-system bhavesh51/resume-rank-system:latest
 
 deploymentjob:
-  stage: deployment
+  stage: deploy
   tags:
     - resume-rank-system
   script:
