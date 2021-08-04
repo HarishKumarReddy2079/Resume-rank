@@ -13,14 +13,13 @@ warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim')
 app = Flask(__name__)
 
 app.config.from_object(__name__) # load config from this file , flaskr.py
-"""
+
 # Load default config and override config from an environment variable
 app.config.update(dict(
     USERNAME='admin',
     PASSWORD='admin',
     SECRET_KEY='development key',
 ))
-"""
 
 app.config['UPLOAD_FOLDER'] = 'Upload-Resume'
 app.config['UPLOAD_JD_FOLDER'] = 'Upload-JD'

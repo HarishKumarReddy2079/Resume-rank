@@ -57,7 +57,7 @@ def create_profile(file,new_keyword_data,new_keyword_dict):
 
     matcher = PhraseMatcher(nlp.vocab)
 
-    print(new_keyword_dict)
+    #print(new_keyword_dict)
    # for key, value in new_keyword_dict:
    #    print(key)
    #     print(new_keyword_dict)

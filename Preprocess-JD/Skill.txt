@@ -1,2 +1,23 @@
 Python
-NLP
+Machine Learning
+Dataset cleaning
+Dataset Analysis
+Data Visualization
+Deep Learning
+CNN
+GNN
+Numpy
+Scikit-learn
+pandas
+tensofflow
+Pytorch
+Linux
+Operating system
+Optimization of model
+c++
+Graphics engine
+unity
+unreal engine
+cloud system
+AWS
+Azure

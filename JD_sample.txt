@@ -1,0 +1,25 @@
+Roles & Responsibilities : ML Engineer
+
+1. Develop machine learning models based on the set business objectives.
+2. Identifying datasets for a problem, data cleansing, analysis and vizualization.
+3. Evaluate different Machine Learning algorithms to solve a given problem.
+4. Analyse the performance of Machine learning models and perform experiments for performance improvements.
+5. Study the published literature in Machine Learning and evalute the efficacy of the methods described in the literature.
+
+Must Have :
+
+1. Hands-on experience in developing deep learning models using CNNs, GANs.
+2. Proficiency in Python programming language.
+3. Proficiency in Machine Learning related python libraries like numpy, scikit-learn, pandas etc.
+4. Proficiency in Machine Learning frameworks like Tensorflow and Pytorch.
+5. Proficiency with Linux operating systems.
+6. Proficieny in running containerized Machine Learning workloads.
+7. Experience in hardware specific optimizations of Machine Learning models.
+8. Excellent verbal and written communication skills.
+9. Strong analytical and reasoning skills.
+
+Good To Have :
+
+1. Proficiency in C++ programming language.
+2. Proficiency in Graphics engine like Unity, Unreal Engine.
+3. Proficiency in running Machine Learning workloads on Cloud Systems like AWS / Azure.

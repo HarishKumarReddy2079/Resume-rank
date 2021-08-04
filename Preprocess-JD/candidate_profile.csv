@@ -1,11 +1,7 @@
-,Candidate Name,Pastcompany,Role,Skill,Experience,file_path
-0,dhruvi,1.0,0.0,1.0,1.08,Dhruvi.pdf
-1,dhruvitrivedi,1.0,0.0,1.0,0.0,DhruviTrivedi.docx
-2,diya,1.0,0.0,1.0,1.33,Diya.pdf
-3,nikunj,1.0,1.0,1.0,4.5,Nikunj.pdf
-4,rhutushah,1.0,1.0,1.0,1.33,Rhutushah.pdf
-5,sample,0.0,1.0,0.0,3.67,sample.pdf
-6,sample3,0.0,1.0,0.0,3.67,sample3.pdf
-7,sample4,0.0,1.0,0.0,3.67,sample4.pdf
-8,shreya,1.0,0.0,1.0,0.0,Shreya_CVMain.docx
-9,yash,1.0,0.0,0.0,1.33,Yash.pdf
+,Candidate Name,Role,Skill,Experience,file_path
+0,dhruvi,1.0,4.0,1.08,Dhruvi.pdf
+1,dhruvitrivedi,0.0,3.0,0.0,DhruviTrivedi.docx
+2,diya,2.0,3.0,2.17,Diya.pdf
+3,nikunj,1.0,3.0,4.5,Nikunj.pdf
+4,rhutushah,3.0,6.0,0.0,Rhutushah.pdf
+5,yash,1.0,3.0,0.0,YASH_PATEL_cv.docx

@@ -60,7 +60,7 @@ def res(JD_path,rank):
         if len_words >= 4:
             new_keyword.append(Train_model(user_data_path+columns+".txt",columns))
             new_keyword_dict[columns] = Train_model(user_data_path+columns+".txt",columns)
-    print(new_keyword_dict)
+    #print(new_keyword_dict)
 
 
 

@@ -1,5 +1,24 @@
-Skill,Qualification,Experience,Pastcompany,Role
-Python,Btech,Fresher,PerfectVIPs,Developer
-NLP,BE,,,
-Data analyst,Mtech,,,
-,ME,,,
+Skill,Qualification,Role
+Python,Btech,ML Engineer
+Machine Learning,BE,Machine Learning
+Dataset cleaning,Mtech,
+Dataset Analysis,ME,
+Data Visualization,,
+Deep Learning,,
+CNN,,
+GNN,,
+Numpy,,
+Scikit-learn,,
+pandas,,
+tensofflow,,
+Pytorch,,
+Linux,,
+Operating system,,
+Optimization of model,,
+c++,,
+Graphics engine,,
+unity,,
+unreal engine,,
+cloud system,,
+AWS,,
+Azure,,
