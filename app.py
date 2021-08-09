@@ -54,7 +54,7 @@ def logout():
     return redirect(url_for('home'))
 """
 
-# Main Page
+
 @app.route('/')
 def home():
     error = None
@@ -310,6 +310,11 @@ def custom_static1(filename):
 # Main
 if __name__ == '__main__':
    # app.run(debug = True) 
-     app.run('127.0.0.1' , 5000 , debug=True)
+
+    app.run('127.0.0.1' , 5000 , debug=True)
     #app.run(host='0.0.0.0', debug=True , threaded=True, port=int(os.environ.get('PORT',8080)))
+
+    # app.run('127.0.0.1' , 5000 , debug=True)
+    #app.run(host='0.0.0.0', debug=True , threaded=True, port=int(os.environ.get('PORT',3000)))
+
     

@@ -1,0 +1,18 @@
+before_script:
+  - docker info
+
+buildjob:
+  stage: build
+  tags:
+    - resume-rank-system
+  script:
+    - docker build -t resume-rank-system .
+    - docker tag resume-rank-system bhavesh51/resume-rank-system:latest
+
+deploymentjob:
+  stage: deploy
+  tags:
+    - resume-rank-system
+  script:
+    - docker image push bhavesh51/resume-rank-system:latest
+    - aws ecs update-service --cluster resume-rank-system -service resume-rank-system-service --force-new-deployment
