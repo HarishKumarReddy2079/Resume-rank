@@ -21,7 +21,6 @@ app.config.update(dict(
     SECRET_KEY='development key',
 ))
 
-
 app.config['UPLOAD_FOLDER'] = 'Upload-Resume'
 app.config['UPLOAD_JD_FOLDER'] = 'Upload-JD'
 app.config['ALLOWED_EXTENSIONS'] = set(['pdf', 'doc', 'docx'])
@@ -56,10 +55,6 @@ def logout():
 """
 
 
-@app.route('/demo')
-def demo():
-    return "hello world11"
-
 @app.route('/')
 def home():
     error = None
@@ -70,6 +65,7 @@ def home():
     """
     return render_template('index.html', name = x,error=error)
 
+# Result page
 @app.route('/results', methods=['GET', 'POST'])
 def addcvJD():
 
@@ -125,6 +121,7 @@ def res():
        return render_template('result.html', results = flask_return,jd = df)
     return render_template("index.html")
 
+# Upload JD 
 @app.route('/uploadjdDesc1', methods=['GET', 'POST'])
 def SELECTJD():
     x = os.listdir(app.config['UPLOAD_JD_FOLDER'])
@@ -133,7 +130,7 @@ def SELECTJD():
         error = "Please add JD"
     return render_template('SELECTJD.html',name = x,error=error)
 
-
+# Upload Resume
 @app.route('/uploadResume', methods=['GET', 'POST'])
 def uploadResume():
     x = os.listdir(app.config['UPLOAD_FOLDER'])
@@ -156,7 +153,7 @@ def RemoveResume():
 """
 
 
-
+# Upload resume files
 @app.route("/upload", methods=['POST'])
 def upload_file():
     Error = None
@@ -184,7 +181,7 @@ def uploadjdDesc():
 
     return render_template('uploadjd.html',name = x)
 
-
+# Upload JD files
 @app.route("/uploadjd", methods=['POST'])
 def upload_jd_file():
     
@@ -210,7 +207,7 @@ def upload_jd_file():
             
         return redirect(url_for('home'))
 
-
+# Removed JD
 @app.route('/RemoveJD', methods=['GET', 'POST'])
 def RemoveJD():
 
@@ -224,11 +221,13 @@ def RemoveJD():
         return redirect(url_for('SELECTJD'))
     return redirect(url_for('SELECTJD'))
 
+# Select JD
 @app.route('/SelectJD', methods=['GET', 'POST'])
 def SelectJD():
     session['Prioritylist'] = []
     return redirect(url_for('res'))
 
+#View JD
 @app.route('/ViewJD', methods=['GET', 'POST'])
 def ViewJD():
 
@@ -255,9 +254,7 @@ def ViewJD():
 
     return redirect(url_for('SELECTJD'))
 
-
-
-
+#Set Priority
 @app.route('/SetPriority', methods=['GET', 'POST'])
 def SetPriority():
     
@@ -310,8 +307,14 @@ def custom_static(filename):
 def custom_static1(filename):
     return send_from_directory('./Upload-JD', filename)
 
+# Main
 if __name__ == '__main__':
    # app.run(debug = True) 
+
+    app.run('127.0.0.1' , 5000 , debug=True)
+    #app.run(host='0.0.0.0', debug=True , threaded=True, port=int(os.environ.get('PORT',8080)))
+
     # app.run('127.0.0.1' , 5000 , debug=True)
-    app.run(host='0.0.0.0', debug=True , threaded=True, port=int(os.environ.get('PORT',3000)))
+    #app.run(host='0.0.0.0', debug=True , threaded=True, port=int(os.environ.get('PORT',3000)))
+
     

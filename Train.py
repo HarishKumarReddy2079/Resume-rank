@@ -14,6 +14,7 @@ from gensim.models.phrases import Phraser, Phrases
 import os
 
 
+
 def Train_model(Branch_path,JD_columns):
     ## Dataset from create JD
     with open(Branch_path,encoding="utf8") as f:
@@ -57,7 +58,7 @@ def Train_model(Branch_path,JD_columns):
     common_terms = ["of", "with", "without", "and", "or", "the", "a"]
     x=ntexts
     # Create the relevant phrases from the list of sentences:
-    phrases = Phrases(x, common_terms=common_terms)
+    phrases = Phrases(x, min_count=1,common_terms=common_terms)
     # The Phraser object is used from now on to transform sentences
     bigram = Phraser(phrases)
     # Applying the Phraser to transform our sentences

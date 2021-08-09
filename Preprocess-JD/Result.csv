@@ -1,11 +1,7 @@
-,Candidate Name,Skill,Qualification,Experience,Pastcompany,Role,file_path,Total,Ranking
-1,dhruvitrivedi,1.0,0.0,1.0,1.0,0.0,DhruviTrivedi.docx,3.0,15.0
-3,nikunj,1.0,0.0,0.0,1.0,1.0,Nikunj.pdf,3.0,15.0
-4,rhutushah,1.0,0.0,0.0,1.0,1.0,Rhutushah.pdf,3.0,15.0
-8,shreya,1.0,0.0,1.0,1.0,0.0,Shreya_CVMain.docx,3.0,15.0
-0,dhruvi,1.0,0.0,0.0,1.0,0.0,Dhruvi.pdf,2.0,10.0
-2,diya,1.0,0.0,0.0,1.0,0.0,Diya.pdf,2.0,10.0
-5,sample,0.0,0.0,0.0,0.0,1.0,sample.pdf,1.0,5.0
-6,sample3,0.0,0.0,0.0,0.0,1.0,sample3.pdf,1.0,5.0
-7,sample4,0.0,0.0,0.0,0.0,1.0,sample4.pdf,1.0,5.0
-9,yash,0.0,0.0,0.0,1.0,0.0,Yash.pdf,1.0,5.0
+,Candidate Name,Skill,Qualification,Role,file_path,Total,Ranking
+4,rhutushah,6.0,0.0,3.0,Rhutushah.pdf,9.0,30.0
+0,dhruvi,4.0,0.0,1.0,Dhruvi.pdf,5.0,16.6667
+1,dhruvitrivedi,3.0,0.0,0.0,DhruviTrivedi.docx,3.0,10.0
+2,diya,3.0,0.0,2.0,Diya.pdf,5.0,16.6667
+3,nikunj,3.0,0.0,1.0,Nikunj.pdf,4.0,13.3333
+5,yash,3.0,0.0,1.0,YASH_PATEL_cv.docx,4.0,13.3333

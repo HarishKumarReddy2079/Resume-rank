@@ -3,12 +3,19 @@ import re
 import numpy as np
 import pandas as pd
 
-def Ranking(df5,UserData,rank):
 
+def Ranking(df5,UserData,rank):
+    exp = False
     OutputCSV = ["Candidate Name"]
-    experience3 = UserData['Experience'].dropna().unique().tolist()
-    for exp in experience3:
-      experience3 = exp
+    for col in UserData.columns:
+        if col == 'Experience':
+            exp = True
+    if exp == True :
+        experience3 = UserData['Experience'].dropna().unique().tolist()
+        #print(experience3)
+        for exp in experience3:
+          experience3 = exp
+   
 
     for columns in UserData.columns:
       OutputCSV.append(columns)
@@ -16,7 +23,7 @@ def Ranking(df5,UserData,rank):
         df5[columns] = float("0.0")
     OutputCSV.append("file_path")
 
-   
+
 
      
     # Qualification
@@ -38,42 +45,45 @@ def Ranking(df5,UserData,rank):
 
       
     # Experience
-    if re.compile(r'[0-9]-[0-9]').search(experience3):
-      experience = experience3.split("-")
-      if experience[0] != "0":
-        df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x <= float(experience[0]),0,x))
-      else:
-        df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience[0]),x+1.0,x))
+    if exp == True: 
+        if re.compile(r'[0-9]-[0-9]').search(experience3):
+          experience = experience3.split("-")
+          if experience[0] != "0":
+            df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x <= float(experience[0]),0,x))
+          else:
+            df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience[0]),x+1.0,x))
 
-     # df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience[1]),0,x))
+         # df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience[1]),0,x))   
 
-    elif re.compile(r'[0-9]+').search(experience3):
+        elif re.compile(r'[0-9]+').search(experience3):
 
-      if "+" in experience3:
+          if "+" in experience3:
 
-        experience = experience3.split("+")
-        if experience[0] != "0":
-          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x <= float(experience[0]),0,x))
+            experience = experience3.split("+")
+            if experience[0] != "0":
+              df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x <= float(experience[0]),0,x))
+            else:
+              df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience[0]),x+1.0,x))
+
+          else:
+            experience = re.sub("\D", "", experience3)
+            if experience != "0":
+              df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x <= float(experience),0,x))
+            else:
+              df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience),x+1.0,x))
+
+
+        elif re.compile(r'[a-zA-Z]').search(experience3):
+          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x > 0.0,0.1,x))
+          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x == 0.0,1,x))
+          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x == 0.1,0.0,x))
+
         else:
-          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience[0]),x+1.0,x))
+          df5['experience'] = float("0.0")
+    #else:
+    #  df5['Experience'] = float("0.0")
 
-      else:
-        experience = re.sub("\D", "", experience3)
-        if experience != "0":
-          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x <= float(experience),0,x))
-        else:
-          df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x >= float(experience),x+1.0,x))
-
-
-    elif re.compile(r'[a-zA-Z]').search(experience3):
-      df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x > 0.0,0.1,x))
-      df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x == 0.0,1,x))
-      df5['Experience'] = df5['Experience'].apply(lambda x: np.where(x == 0.1,0.0,x))
-
-
-    else:
-      df5['Experience'] = float("0.0")
-
+    print(df5)
     #OutputCSV = ['Candidate Name','Skill','Experience','Pastcompany','Role','Qualification',"file_path"]
 
     df5 = pd.DataFrame(df5, columns = OutputCSV)  
