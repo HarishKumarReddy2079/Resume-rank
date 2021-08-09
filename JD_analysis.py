@@ -1,9 +1,14 @@
+
+##Run ::  python3 JD_analysis.py --file_ext pdf --file_path sample1.pdf 
+
+
 import io
 from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
 import pandas as pd
+#from pandas import ExcelWriter
 
 # Docx resume
 import docx2txt
@@ -20,6 +25,21 @@ import matplotlib.pyplot as plt
 import xlsxwriter
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+import argparse
+
+
+# construct argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-e", "--file_ext", type=str, required=True,
+	help="please add file_ext")
+ap.add_argument("-f", "--file_path", type=str, required=True,
+	help="please add file path")
+args = vars(ap.parse_args())
+
+
+ext = args["file_ext"]
+file_path  = args["file_path"]
 
 def read_pdf_resume(pdf_doc):
     resource_manager = PDFResourceManager()
@@ -59,7 +79,7 @@ def clean_job_decsription(jd):
     # Lower
     clean_jd = jd.lower()
     # remove punctuation
-    clean_jd = re.sub(r'[^\w\s]', '', clean_jd)
+    #clean_jd = re.sub(r'[^\w\s]', '', clean_jd)
     # remove trailing spaces
     clean_jd = clean_jd.strip()
     # remove numbers
@@ -116,15 +136,21 @@ if __name__ == '__main__':
     
     workbook = xlsxwriter.Workbook('output.xlsx')
     worksheet = workbook.add_worksheet()  
-    row = 0
     
+    row = 1
     column = 0
-    extn = input("Enter File Extension: ")
+    rows = 1
+    rowsQ = 1
+
+    
+    title = ['Skills', 'Qualification', 'Roles']
+
+    #extn = input("Enter File Extension: ")
     #print(extn)
-    if extn == "pdf":
-        job_description = read_pdf_resume('sample1.pdf')
+    if ext == "pdf":
+        job_description = read_pdf_resume(file_path)
     else:
-        job_description = read_word_resume('sample1.DOCX')
+        job_description = read_word_resume(file_path)
     #print(job_description)
     
     #job_description = input("\nEnter the Job Description: ")
@@ -134,20 +160,44 @@ if __name__ == '__main__':
     #print(clean_jd)
 
     ## read csv
-    skills = pd.read_csv("skills.csv")
-   
-   
+    skills = pd.read_csv("JD_anlaysis/skills.csv")
+    roles = pd.read_csv("JD_anlaysis/roles.csv")
+    qualification = pd.read_csv("JD_anlaysis/qualification.csv")
+    
+    j = 0
+    #print(clean_jd)
+    #worksheet.write(0,j,title[j])
+    for a in title:
+        worksheet.write(0,j,title[j])
+        j = j + 1
     # iterating through content list
     for item in clean_jd :
+
         if item in skills:
-            print(item) 
+            #print(item) 
             # write operation perform
             worksheet.write(row, column, item)
   
             # incrementing the value of row by one
             # with each iteratons.
             row += 1
-      
+        
+        if item in roles:
+            #print(item.lower) 
+            # write operation perform
+            worksheet.write(rows, 1, item)
+            # incrementing the value of row by one
+            # with each iteratons.
+            rows += 1
+
+        if item in qualification:
+            #print(item.lower) 
+            # write operation perform
+            worksheet.write(rowsQ, 2, item)
+            # incrementing the value of row by one
+            # with each iteratons.
+            rowsQ += 1
+
     workbook.close()
     #create_word_cloud(clean_jd)
     
