@@ -10,7 +10,7 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 import gensim
-from gensim.models.phrases import Phraser, Phrases
+from gensim.models.phrases import Phraser, Phrases, ENGLISH_CONNECTOR_WORDS
 import os
 
 
@@ -58,12 +58,12 @@ def Train_model(Branch_path,JD_columns):
     common_terms = ["of", "with", "without", "and", "or", "the", "a"]
     x=ntexts
     # Create the relevant phrases from the list of sentences:
-    phrases = Phrases(x, min_count=1,common_terms=common_terms)
+    phrases = Phrases(x,min_count=1, threshold=1, connector_words=ENGLISH_CONNECTOR_WORDS)
     # The Phraser object is used from now on to transform sentences
     bigram = Phraser(phrases)
     # Applying the Phraser to transform our sentences
     all_sentences = list(bigram[x])
-    model=gensim.models.Word2Vec(all_sentences,size=5000,min_count=1,workers=4,window=4)
+    model=gensim.models.Word2Vec(all_sentences,vector_size= 5000, min_count=1,workers=4,window=4)
     model.save("../TrainModel/"+JD_columns+".model")
 
    # if Branchflag == 1:
@@ -75,6 +75,6 @@ def Train_model(Branch_path,JD_columns):
 
 
     wrds=list(model.wv.vocab)
-    return new_keyword
+    return wrds
 
 
